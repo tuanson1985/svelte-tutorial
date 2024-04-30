@@ -24,6 +24,16 @@
     },
   ];
   $: total = items.reduce((total, curr) => (total = total + curr.price), 0);
+
+  $: console.log(`Fullname is ${firstName} ${lastName}`);
+  let volume = 0;
+  $: if (volume < 0) {
+    alert(`Can't go lower`);
+    volume = 0;
+  } else if (volume > 20) {
+    alert(`Can't go higher`);
+    volume = 20;
+  }
 </script>
 
 <main>
@@ -46,6 +56,12 @@
   >
     Add item
   </button>
+
+  <div>
+    <h2>Current Volume {volume}</h2>
+    <button on:click={() => (volume += 2)}>Increase Volume</button>
+    <button on:click={() => (volume -= 2)}>Decrease Volume</button>
+  </div>
 </main>
 
 <style>
