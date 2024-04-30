@@ -2,12 +2,16 @@
   const name = "HQGROUP";
   const channel = "<b>Condevolution</b>";
   const hack = `<a href="#" onclick="alert('You have been hacked!')">Win pzize!</a>`;
+  const id = 'heading';
+  const disabled = true;
 </script>
 
 <main>
   <h1>Hello {name}!</h1>
   <div>{@html channel}</div>
   <div>{@html hack}</div>
+  <h2 {id}>This is a heading</h2>
+  <button {disabled}>Bind</button>
 </main>
 
 <style>
