@@ -1,126 +1,51 @@
 <script>
-  const formValues = {
-    name: "",
-    profileSummary: "",
-    country: "",
-    jobLocation: [],
-    remoteWork: false,
-    skillSet: [],
-    yearsOfExperience: "",
-  };
-
-  function submitForm() {
-    console.log("form values", formValues);
+  let firstName = "Bui";
+  let lastName = "Tuan Son";
+  $: fullName = `${firstName} ${lastName}`;
+  $: {
+    const greet = `Fullname is ${firstName} ${lastName}`;
+    console.log(greet);
   }
+  let items = [
+    {
+      id: 1,
+      title: "TV",
+      price: 100,
+    },
+    {
+      id: 2,
+      title: "Phone",
+      price: 200,
+    },
+    {
+      id: 3,
+      title: "Laptop",
+      price: 300,
+    },
+  ];
+  $: total = items.reduce((total, curr) => (total = total + curr.price), 0);
 </script>
 
 <main>
-  <div>
-    <pre>
-		{JSON.stringify(formValues, null, 2)}
-	</pre>
-  </div>
-  <form on:submit|preventDefault={submitForm}>
-    <div>
-      <label for="name">Name</label>
-      <input type="text" id="name" bind:value={formValues.name} />
-    </div>
+  <h2>{firstName} {lastName}</h2>
 
-    <div>
-      <label for="profile">Profile Summary</label>
-      <textarea name="" id="profile" bind:value={formValues.profileSummary} />
-    </div>
+  <h2>{fullName}</h2>
 
-    <div>
-      <label for="country">Country</label>
-      <select id="country" bind:value={formValues.country}>
-        <option value="">Select a country</option>
-        <option value="india">India</option>
-        <option value="vietname">Vietnam</option>
-        <option value="singapore">Singapore</option>
-      </select>
-    </div>
+  <button
+    on:click={() => {
+      firstName = "Son";
+      lastName = "Bui Tuan";
+    }}>Change Name</button
+  >
 
-    <div>
-      <label for="job-location">Job location</label>
-      <select id="job-location" bind:value={formValues.jobLocation} multiple>
-        <option value="">Select a country</option>
-        <option value="php">PHP</option>
-        <option value="java">Java</option>
-        <option value="typescript">TypeScript</option>
-      </select>
-    </div>
+  <h2>Reactive Total - {total}</h2>
 
-    <div>
-      <input
-        type="checkbox"
-        id="remoteWork"
-        bind:checked={formValues.remoteWork}
-      />
-      <label for="remoteWork">Open to remote work?</label>
-    </div>
-
-    <div>
-      <label>Skill set</label>
-      <input
-        type="checkbox"
-        id="html"
-        value="html"
-        bind:group={formValues.skillSet}
-      />
-      <label for="html">HTML</label>
-      <input
-        type="checkbox"
-        id="css"
-        value="css"
-        bind:group={formValues.skillSet}
-      />
-      <label for="css">CSS</label>
-      <input
-        type="checkbox"
-        id="javascript"
-        value="javascript"
-        bind:group={formValues.skillSet}
-      />
-      <label for="javascript">JavaScript</label>
-    </div>
-
-    <div>
-      <label>Years of Experience</label>
-      <input
-        type="radio"
-        id="0-2"
-        value="0-2"
-        bind:group={formValues.yearsOfExperience}
-      />
-      <label for="0-2">0-2</label>
-      <input
-        type="radio"
-        id="3-5"
-        value="3-5"
-        bind:group={formValues.yearsOfExperience}
-      />
-      <label for="3-5">3-5</label>
-      <input
-        type="radio"
-        id="6-10"
-        value="6-10"
-        bind:group={formValues.yearsOfExperience}
-      />
-      <label for="6-10">6-10</label>
-      <input
-        type="radio"
-        id="10+"
-        value="10+"
-        bind:group={formValues.yearsOfExperience}
-      />
-      <label for="10+">10+</label>
-    </div>
-
-    <div>
-      <button>Submit</button>
-    </div>
-  </form>
+  <button
+    on:click={() =>
+      (items = [...items, { id: 4, title: "Keyboard", price: 50 }])}
+  >
+    Add item
+  </button>
 </main>
 
 <style>
