@@ -1,39 +1,29 @@
 <script>
-  const names = ["Bruce", "Clark", "Diana"];
-  const fullNames = [
-    { first: "Bruce", last: "Wayne" },
-    { first: "Clark", last: "Kent" },
-    { first: "Princess", last: "Diana" },
+  import { shuffle } from "lodash";
+  let names = [
+    "Bui Tuan Son",
+    "Do The Phuong",
+    "Dang Van Truong",
+    "Nguyen Tuan",
   ];
+  const shuffleNames = () => {
+    names = shuffle(names);
+  };
 </script>
 
 <main>
-  {#each fullNames as name, index (name.first)}
-    <h2>{index + 1} {name.first} {name.last}</h2>
+  {#each names as name (name)}
+    <h2>{name}</h2>
+    <input placeholder="Last name" />
   {/each}
-  {#each names as name, index}
-    <h2>{index + 1} - {name}</h2>
-  {/each}
+  <div>
+    <button on:click={shuffleNames}>shuffle!</button>
+  </div>
 </main>
 
 <style>
   main {
+    font-family: sans-serif;
     text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
   }
 </style>
