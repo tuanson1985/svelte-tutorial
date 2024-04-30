@@ -1,45 +1,20 @@
 <script>
-  const name = "HQGROUP";
-  const channel = "<b>Condevolution</b>";
-  const hack = `<a href="#" onclick="alert('You have been hacked!')">Win pzize!</a>`;
-  const id = "heading";
-  const disabled = true;
-  const status = "success";
-  const isPromoted = true;
-  const promoted = true;
+  const num = 0;
 </script>
 
 <main>
-  <h2 class="underline">Underlined Text</h2>
-  <h2 class={status}>Status</h2>
-  <h2 class={isPromoted ? "promoted" : ""}>Movie Title</h2>
-  <h2 class:promoted={isPromoted}>Movie Title</h2>
-  <h2 class:promoted>Movie Title</h2>
-
-  <h1>Hello {name}!</h1>
-  <div>{@html channel}</div>
-  <div>{@html hack}</div>
-  <h2 {id}>This is a heading</h2>
-  <button {disabled}>Bind</button>
+  {#if num === 0}
+    <h2>The number is zero</h2>
+  {:else if num < 0}
+    <h2>The number is negative</h2>
+  {:else if num > 0}
+    <h2>The number is positive</h2>
+  {:else}
+    <h2>The number is not zero</h2>
+  {/if}
 </main>
 
 <style>
-  .underline {
-    text-decoration: underline;
-  }
-
-  .danger {
-    color: red;
-  }
-
-  .success {
-    color: olivedrab;
-  }
-
-  .promoted {
-    font-style: italic;
-  }
-
   main {
     text-align: center;
     padding: 1em;
