@@ -1,29 +1,31 @@
 <script>
-  import { shuffle } from "lodash";
-  let names = [
-    "Bui Tuan Son",
-    "Do The Phuong",
-    "Dang Van Truong",
-    "Nguyen Tuan",
-  ];
-  const shuffleNames = () => {
-    names = shuffle(names);
-  };
+  let count = 0;
+  function handleClick() {
+    count += 1;
+  }
+  function handleClickEvent(event, stepSize) {
+    count += stepSize;
+  }
 </script>
 
 <main>
-  {#each names as name (name)}
-    <h2>{name}</h2>
-    <input placeholder="Last name" />
-  {/each}
-  <div>
-    <button on:click={shuffleNames}>shuffle!</button>
-  </div>
+  <button on:click={() => (count = count + 1)}>Count {count}</button>
+  <button on:click={handleClick}>Count {count}</button>
+  <button on:click={(event) => handleClickEvent(event, 5)}>Count {count}</button
+  >
 </main>
 
 <style>
   main {
-    font-family: sans-serif;
     text-align: center;
+    padding: 1em;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    main {
+      max-width: none;
+    }
   }
 </style>
